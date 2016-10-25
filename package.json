@@ -1,0 +1,37 @@
+{
+  "name": "photofer",
+  "version": "1.0.0",
+  "description": "ejercicio de estudio",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/C0rporeus/photofer.git"
+  },
+  "keywords": [
+    "ejercicio",
+    "npm",
+    "node",
+    "materialize",
+    "copia",
+    "de",
+    "instagram",
+    "sin",
+    "animo",
+    "de",
+    "lucro",
+    "o",
+    "negocio"
+  ],
+  "author": "Yonathan O. Gutierrez Rodriguez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/C0rporeus/photofer/issues"
+  },
+  "homepage": "https://github.com/C0rporeus/photofer#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
