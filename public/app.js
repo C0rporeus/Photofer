@@ -2429,6 +2429,29 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],14:[function(require,module,exports){
+
+var orig = document.title;
+
+exports = module.exports = set;
+
+function set(str) {
+  var i = 1;
+  var args = arguments;
+  document.title = str.replace(/%[os]/g, function(_){
+    switch (_) {
+      case '%o':
+        return orig;
+      case '%s':
+        return args[i++];
+    }
+  });
+}
+
+exports.reset = function(){
+  set(orig);
+};
+
+},{}],15:[function(require,module,exports){
 var bel = require('bel') // turns template tag into DOM elements
 var morphdom = require('morphdom') // efficiently diffs + morphs two DOM elements
 var defaultEvents = require('./update-events.js') // default events to be copied when dom elements update
@@ -2466,7 +2489,7 @@ module.exports.update = function (fromNode, toNode, opts) {
   }
 }
 
-},{"./update-events.js":15,"bel":1,"morphdom":9}],15:[function(require,module,exports){
+},{"./update-events.js":16,"bel":1,"morphdom":9}],16:[function(require,module,exports){
 module.exports = [
   // attribute events (can be set with attributes)
   'onclick',
@@ -2504,15 +2527,33 @@ module.exports = [
   'onfocusout'
 ]
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 var page = require('page');
+var empty = require('empty-element');
+var template = require('./template');
+var title = require('title');
 
 page('/', function (ctx, next) {
+  title('Photofer');
   var main = document.getElementById('main-container');
-  main.innerHTML = '<a href="/signup">SignUp</a>';
+  empty(main).appendChild(template);
 });
 
-},{"page":11}],17:[function(require,module,exports){
+},{"./template":18,"empty-element":3,"page":11,"title":14}],18:[function(require,module,exports){
+var yo = require('yo-yo');
+var layout = require('../layout');
+
+var template = yo`<div class="container timeline">
+                    <div class="row">
+                      <div class="col s12 m10 offset-m1 l6 offset-l3">
+                      content
+                      </div>
+                    </div>
+                  </div>`;
+
+module.exports = layout(template);
+
+},{"../layout":21,"yo-yo":15}],19:[function(require,module,exports){
 var page = require('page');
 
 require('./homepage');
@@ -2521,12 +2562,12 @@ require('./signin');
 
 page();
 
-},{"./homepage":16,"./signin":19,"./signup":21,"page":11}],18:[function(require,module,exports){
+},{"./homepage":17,"./signin":22,"./signup":24,"page":11}],20:[function(require,module,exports){
 var yo = require('yo-yo');
 
 module.exports = function landing(box) {
 
-  return yo`<div class="container">
+  return yo`<div class="container landing">
         <div class="row">
           <div class="col s10 push-s1">
             <div class="row">
@@ -2540,17 +2581,50 @@ module.exports = function landing(box) {
       </div>`;
 };
 
-},{"yo-yo":14}],19:[function(require,module,exports){
+},{"yo-yo":15}],21:[function(require,module,exports){
+var yo = require('yo-yo');
+
+module.exports = function layout(content) {
+
+  return yo`<div>
+<nav class="header">
+  <div class="nav-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col s7 m6 push-m1">
+         <a href="/" class="brand-logo photofer">Photofer</a>
+        </div>
+        <div class="col s3 m5 push-m3">
+         <a href="#" class="btn btn-large btn-flat dropdown-button" data-activates="drop-user">
+          <i class="fa fa-user" aria-hidden="true"></i>
+         </a>
+         <ul id="drop-user" class="dropdown-content">
+          <li><a href="#">Salir</a></li>
+         </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="content">
+  ${ content }
+</div>
+</div>`;
+};
+
+},{"yo-yo":15}],22:[function(require,module,exports){
 var page = require('page');
 var empty = require('empty-element');
 var template = require('./template');
+var title = require('title');
 
 page('/signin', function (ctx, next) {
+  title('Photofer - Signin');
   var main = document.getElementById('main-container');
   empty(main).appendChild(template);
 });
 
-},{"./template":20,"empty-element":3,"page":11}],20:[function(require,module,exports){
+},{"./template":23,"empty-element":3,"page":11,"title":14}],23:[function(require,module,exports){
 var yo = require('yo-yo');
 var landing = require('../landing');
 
@@ -2563,7 +2637,7 @@ var signinForm = yo`
             
             <div class="section">
               <a class="btn btn-fb hide-on-small-only">Iniciar sesión con Facebook</a>
-              <a class="btn btn-fb hide-on-med-and-up">Inicial sesión</a>
+              <a class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-square" aria-hidden="true"></i>  Inicial sesión</a>
             </div>
             <div class="divider"></div>
               <div class="section">
@@ -2576,24 +2650,26 @@ var signinForm = yo`
       </div>
       <div class="row">
         <div class="login-box">
-        ¿No tienes una cuenta? <a href="/signin">Registrate</a>
+        ¿No tienes una cuenta? <a href="/signup">Registrate</a>
         </div>
       </div>
     </div>`;
 
 module.exports = landing(signinForm);
 
-},{"../landing":18,"yo-yo":14}],21:[function(require,module,exports){
+},{"../landing":20,"yo-yo":15}],24:[function(require,module,exports){
 var page = require('page');
 var empty = require('empty-element');
 var template = require('./template');
+var title = require('title');
 
 page('/signup', function (ctx, next) {
+  title('Photofer - Signup');
   var main = document.getElementById('main-container');
   empty(main).appendChild(template);
 });
 
-},{"./template":22,"empty-element":3,"page":11}],22:[function(require,module,exports){
+},{"./template":25,"empty-element":3,"page":11,"title":14}],25:[function(require,module,exports){
 var yo = require('yo-yo');
 var landing = require('../landing');
 
@@ -2606,7 +2682,7 @@ var signupForm = yo`
             <h2>Regístrate para ver fotos de amigos de la ciudad</h2>
             <div class="section">
               <a class="btn btn-fb hide-on-small-only">Iniciar sesión con Facebook</a>
-              <a class="btn btn-fb hide-on-med-and-up">Inicial sesión</a>
+              <a class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-square" aria-hidden="true"></i>  Inicial sesión</a>
             </div>
             <div class="divider"></div>
               <div class="section">
@@ -2628,4 +2704,4 @@ var signupForm = yo`
 
 module.exports = landing(signupForm);
 
-},{"../landing":18,"yo-yo":14}]},{},[17]);
+},{"../landing":20,"yo-yo":15}]},{},[19]);

@@ -10,7 +10,7 @@ var signinForm = yo`
             
             <div class="section">
               <a class="btn btn-fb hide-on-small-only">Iniciar sesión con Facebook</a>
-              <a class="btn btn-fb hide-on-med-and-up">Inicial sesión</a>
+              <a class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-square" aria-hidden="true"></i>  Inicial sesión</a>
             </div>
             <div class="divider"></div>
               <div class="section">
@@ -23,7 +23,7 @@ var signinForm = yo`
       </div>
       <div class="row">
         <div class="login-box">
-        ¿No tienes una cuenta? <a href="/signin">Registrate</a>
+        ¿No tienes una cuenta? <a href="/signup">Registrate</a>
         </div>
       </div>
     </div>`

@@ -10,7 +10,7 @@ var signupForm = yo`
             <h2>Regístrate para ver fotos de amigos de la ciudad</h2>
             <div class="section">
               <a class="btn btn-fb hide-on-small-only">Iniciar sesión con Facebook</a>
-              <a class="btn btn-fb hide-on-med-and-up">Inicial sesión</a>
+              <a class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-square" aria-hidden="true"></i>  Inicial sesión</a>
             </div>
             <div class="divider"></div>
               <div class="section">
