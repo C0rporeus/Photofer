@@ -3,7 +3,8 @@ var sass = require('gulp-sass');
 var rename = require('gulp-rename');
 var babel = require('babelify');
 var browserify = require('browserify');
-var source = require('vinyl-source-stream')
+var source = require('vinyl-source-stream');
+var watchify = require('watchify');
 
 //estilos gulp
 gulp.task('styles', function(){
@@ -20,17 +21,38 @@ gulp.task('assets', function () {
 	 .src('assets/*')
 	 .pipe(gulp.dest('public'));
 	})
+//funcion de observacion constante para no parar e server...
+function compile (watch) {
+	var bundle = watchify(browserify('./src/index.js'));
 
-//definir el archivo logico primario transformando lo que se tiene a babel y llevandolo a public con el resto de componentes
-//igualmente cambia el nombre originario con el fin de unificar todos los recursos en un archivo unico y minificado con cada uno de los recursos invocados
-gulp.task('scripts', function () {
-	 browserify('./src/index.js')
-	  .transform(babel)
-	  .bundle()
-	  .pipe(source('index.js'))
-	  .pipe(rename('app.js'))
-	  .pipe(gulp.dest('public'));
-	})
+  function rebundle(){
+    bundle
+    .transform(babel)
+    .bundle()
+    .on('error', function (err){
+    	console.log(err);
+    	this.emit('end')
+    	})
+    .pipe(source('index.js'))
+    .pipe(rename('app.js'))
+    .pipe(gulp.dest('public'));
+  }
+	if (watch) {
+		bundle.on('update', function () {
+      console.log('---> Cargando...');
+      rebundle();
+      });
+	}
+  rebundle();
+}
 
 
-gulp.task('default', ['styles', 'assets', 'scripts'])
+gulp.task('build', function () {
+  return compile();
+	});
+
+gulp.task('watch', function () {
+  return compile(true);
+	});
+
+gulp.task('default', ['styles', 'assets', 'build'])
