@@ -2536,6 +2536,7 @@ var title = require('title');
 page('/', function (ctx, next) {
   title('Photofer');
   var main = document.getElementById('main-container');
+<<<<<<< HEAD
 
   var pictures = [{
     user: {
@@ -2555,11 +2556,15 @@ page('/', function (ctx, next) {
     liked: true
   }];
   empty(main).appendChild(template(pictures));
+=======
+  empty(main).appendChild(template);
+>>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 });
 
 },{"./template":18,"empty-element":3,"page":11,"title":14}],18:[function(require,module,exports){
 var yo = require('yo-yo');
 var layout = require('../layout');
+<<<<<<< HEAD
 var picture = require('../picture-card');
 
 module.exports = function (pictures) {
@@ -2577,6 +2582,20 @@ module.exports = function (pictures) {
 };
 
 },{"../layout":21,"../picture-card":22,"yo-yo":15}],19:[function(require,module,exports){
+=======
+
+var template = yo`<div class="container timeline">
+                    <div class="row">
+                      <div class="col s12 m10 offset-m1 l6 offset-l3">
+                      content
+                      </div>
+                    </div>
+                  </div>`;
+
+module.exports = layout(template);
+
+},{"../layout":21,"yo-yo":15}],19:[function(require,module,exports){
+>>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var page = require('page');
 
 require('./homepage');
@@ -2585,7 +2604,11 @@ require('./signin');
 
 page();
 
+<<<<<<< HEAD
 },{"./homepage":17,"./signin":23,"./signup":25,"page":11}],20:[function(require,module,exports){
+=======
+},{"./homepage":17,"./signin":22,"./signup":24,"page":11}],20:[function(require,module,exports){
+>>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var yo = require('yo-yo');
 
 module.exports = function landing(box) {
@@ -2636,6 +2659,7 @@ module.exports = function layout(content) {
 };
 
 },{"yo-yo":15}],22:[function(require,module,exports){
+<<<<<<< HEAD
 var yo = require('yo-yo');
 
 module.exports = function (pic) {
@@ -2657,6 +2681,8 @@ module.exports = function (pic) {
 };
 
 },{"yo-yo":15}],23:[function(require,module,exports){
+=======
+>>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var page = require('page');
 var empty = require('empty-element');
 var template = require('./template');
@@ -2668,7 +2694,11 @@ page('/signin', function (ctx, next) {
   empty(main).appendChild(template);
 });
 
+<<<<<<< HEAD
 },{"./template":24,"empty-element":3,"page":11,"title":14}],24:[function(require,module,exports){
+=======
+},{"./template":23,"empty-element":3,"page":11,"title":14}],23:[function(require,module,exports){
+>>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var yo = require('yo-yo');
 var landing = require('../landing');
 
@@ -2701,7 +2731,11 @@ var signinForm = yo`
 
 module.exports = landing(signinForm);
 
+<<<<<<< HEAD
 },{"../landing":20,"yo-yo":15}],25:[function(require,module,exports){
+=======
+},{"../landing":20,"yo-yo":15}],24:[function(require,module,exports){
+>>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var page = require('page');
 var empty = require('empty-element');
 var template = require('./template');
@@ -2713,7 +2747,11 @@ page('/signup', function (ctx, next) {
   empty(main).appendChild(template);
 });
 
+<<<<<<< HEAD
 },{"./template":26,"empty-element":3,"page":11,"title":14}],26:[function(require,module,exports){
+=======
+},{"./template":25,"empty-element":3,"page":11,"title":14}],25:[function(require,module,exports){
+>>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var yo = require('yo-yo');
 var landing = require('../landing');
 
