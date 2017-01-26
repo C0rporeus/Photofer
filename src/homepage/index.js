@@ -6,7 +6,7 @@ var title = require('title');
 page('/', function(ctx, next) {
   title('Photofer');
   var main = document.getElementById('main-container');
-<<<<<<< HEAD
+
 
   var pictures = [
   	{
@@ -30,7 +30,4 @@ page('/', function(ctx, next) {
 
   ];
   empty(main).appendChild(template(pictures)); 
-=======
-  empty(main).appendChild(template); 
->>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 })

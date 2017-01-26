@@ -2536,7 +2536,6 @@ var title = require('title');
 page('/', function (ctx, next) {
   title('Photofer');
   var main = document.getElementById('main-container');
-<<<<<<< HEAD
 
   var pictures = [{
     user: {
@@ -2556,22 +2555,17 @@ page('/', function (ctx, next) {
     liked: true
   }];
   empty(main).appendChild(template(pictures));
-=======
-  empty(main).appendChild(template);
->>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 });
 
 },{"./template":18,"empty-element":3,"page":11,"title":14}],18:[function(require,module,exports){
 var yo = require('yo-yo');
 var layout = require('../layout');
-<<<<<<< HEAD
 var picture = require('../picture-card');
 
 module.exports = function (pictures) {
   var el = yo`<div class="container timeline">
                     <div class="row">
                       <div class="col s12 m10 offset-m1 l6 offset-l3">
-                      
                       ${ pictures.map(function (pic) {
     return picture(pic);
   }) }
@@ -2582,20 +2576,6 @@ module.exports = function (pictures) {
 };
 
 },{"../layout":21,"../picture-card":22,"yo-yo":15}],19:[function(require,module,exports){
-=======
-
-var template = yo`<div class="container timeline">
-                    <div class="row">
-                      <div class="col s12 m10 offset-m1 l6 offset-l3">
-                      content
-                      </div>
-                    </div>
-                  </div>`;
-
-module.exports = layout(template);
-
-},{"../layout":21,"yo-yo":15}],19:[function(require,module,exports){
->>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var page = require('page');
 
 require('./homepage');
@@ -2604,11 +2584,7 @@ require('./signin');
 
 page();
 
-<<<<<<< HEAD
 },{"./homepage":17,"./signin":23,"./signup":25,"page":11}],20:[function(require,module,exports){
-=======
-},{"./homepage":17,"./signin":22,"./signup":24,"page":11}],20:[function(require,module,exports){
->>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var yo = require('yo-yo');
 
 module.exports = function landing(box) {
@@ -2659,30 +2635,28 @@ module.exports = function layout(content) {
 };
 
 },{"yo-yo":15}],22:[function(require,module,exports){
-<<<<<<< HEAD
 var yo = require('yo-yo');
 
 module.exports = function (pic) {
   return yo`<div class="card">
-                      <div class="card-image">
-                        <img class="activator" src="${ pic.url }">
-                      </div>
-                      <div class="card-content">
-                        <a href="/user/${ pic.user.username }" class="card-title">
-                          <img src="${ pic.user.avatar }" class="avatar" />
-                        <span class="username">${ pic.user.username }</span>
+                        <div class="card-image">
+                          <img class="activator" src="${ pic.url }">
+                        </div>
+                        <div class="card-content">
+                          <a href="/user/${ pic.user.username }" class="card-title">
+                            <img src="${ pic.user.avatar }" class="avatar" />
+                          <span class="username">${ pic.user.username }</span>
                         </a>
-                        <small class="rigth time">Hace 1 dia</small>
+                        <small class="right time">Hace 1 día</small>
                         <p>
-                          <a href=""> </a>
+                          <a class="left" href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                          <span class="left likes">${ pic.likes } me gusta </span>
                         </p>
-                      </div>
-                    </div>`;
+                        </div>
+                      </div>`;
 };
 
 },{"yo-yo":15}],23:[function(require,module,exports){
-=======
->>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var page = require('page');
 var empty = require('empty-element');
 var template = require('./template');
@@ -2694,11 +2668,7 @@ page('/signin', function (ctx, next) {
   empty(main).appendChild(template);
 });
 
-<<<<<<< HEAD
 },{"./template":24,"empty-element":3,"page":11,"title":14}],24:[function(require,module,exports){
-=======
-},{"./template":23,"empty-element":3,"page":11,"title":14}],23:[function(require,module,exports){
->>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var yo = require('yo-yo');
 var landing = require('../landing');
 
@@ -2731,11 +2701,7 @@ var signinForm = yo`
 
 module.exports = landing(signinForm);
 
-<<<<<<< HEAD
 },{"../landing":20,"yo-yo":15}],25:[function(require,module,exports){
-=======
-},{"../landing":20,"yo-yo":15}],24:[function(require,module,exports){
->>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var page = require('page');
 var empty = require('empty-element');
 var template = require('./template');
@@ -2747,11 +2713,7 @@ page('/signup', function (ctx, next) {
   empty(main).appendChild(template);
 });
 
-<<<<<<< HEAD
 },{"./template":26,"empty-element":3,"page":11,"title":14}],26:[function(require,module,exports){
-=======
-},{"./template":25,"empty-element":3,"page":11,"title":14}],25:[function(require,module,exports){
->>>>>>> 80dceb32f6e86b83947d947fb6cfc5e9844d828c
 var yo = require('yo-yo');
 var landing = require('../landing');
 
